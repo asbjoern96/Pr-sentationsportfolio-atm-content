@@ -122,6 +122,11 @@
         <source src="Video/Davinde Sø.mp4" type="video/mp4">
       </video>
     </div>
+        <div class="reel-item">
+   <video playsinline muted loop preload="metadata">
+        <source src="Video/NyPR.mp4" type="video/mp4">
+      </video>
+    </div>
        
       <div class="reel-item">
   
@@ -134,6 +139,7 @@
 
   <div class="reel-dots">
     <span class="dot active"></span>
+    <span class="dot"></span>
     <span class="dot"></span>
     <span class="dot"></span>
     <span class="dot"></span>
@@ -349,6 +355,17 @@
 
 
 <footer class="footer-dark">© 2025 ATM Content — Asbjørn Thorup Møller</footer>
+
+<!-- VIDEO POPUP / MODAL -->
+<div class="video-modal" id="videoModal" aria-hidden="true">
+  <div class="video-modal-backdrop" data-close></div>
+
+  <div class="video-modal-content" role="dialog" aria-modal="true" aria-label="Video afspiller">
+    <button class="video-modal-close" type="button" aria-label="Luk" data-close>✕</button>
+    <video id="modalVideo" controls playsinline preload="metadata"></video>
+  </div>
+</div>
+
 <script>
 const items = Array.from(document.querySelectorAll(".reel-item"));
 const dots  = Array.from(document.querySelectorAll(".dot"));
@@ -369,7 +386,7 @@ function showReel(i){
 
     if (!v) return;
 
-    // stop alle videoer
+    // stop alle videoer i slideren
     v.pause();
     v.currentTime = 0;
 
@@ -391,16 +408,60 @@ function restartAuto(){
   }, 5000);
 }
 
-// klik/tap = play/pause + slå lyd til ved første klik
+/* ==========================
+   VIDEO MODAL LOGIK
+========================== */
+const modal = document.getElementById("videoModal");
+const modalVideo = document.getElementById("modalVideo");
+
+function openModalWithSrc(src) {
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+
+  // stop slider-autoplay mens modal er åben
+  clearInterval(autoSlide);
+
+  modalVideo.src = src;
+  modalVideo.currentTime = 0;
+
+  const p = modalVideo.play();
+  if (p && typeof p.catch === "function") p.catch(() => {});
+}
+
+function closeModal() {
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+
+  modalVideo.pause();
+  modalVideo.removeAttribute("src");
+  modalVideo.load();
+
+  // start slider igen
+  restartAuto();
+}
+
+// åbn modal ved klik på reel-item (den aktive)
 items.forEach(item => {
   const v = item.querySelector("video");
   if (!v) return;
 
   item.addEventListener("click", () => {
-    v.muted = false;
-    if (v.paused) v.play();
-    else v.pause();
+    // brug <source src="..."> hvis den findes
+    const source = v.querySelector("source");
+    const src = (source && source.getAttribute("src")) ? source.getAttribute("src") : v.currentSrc;
+
+    if (src) openModalWithSrc(src);
   });
+});
+
+// luk ved klik på backdrop eller kryds
+modal.addEventListener("click", (e) => {
+  if (e.target && e.target.hasAttribute("data-close")) closeModal();
+});
+
+// luk med ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
 });
 
 prev.addEventListener("click", (e) => {
@@ -418,4 +479,6 @@ next.addEventListener("click", (e) => {
 showReel(0);
 restartAuto();
 </script>
+
+
 
