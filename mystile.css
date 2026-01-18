@@ -230,7 +230,7 @@ nav a:hover::after {
 }
 
 /* ====================================
-   SHOWREEL (VERSION A)
+   SHOWREEL
 ==================================== */
 .reel-wrapper {
   position:relative;
@@ -256,23 +256,23 @@ nav a:hover::after {
   justify-content:center;
   align-items:center;
 }
-
-.reel-video {
+.reel-item video{
   width:100%;
   height:100%;
   object-fit:cover;
-  opacity:0;
-  transform:scale(.96);
-  transition: opacity 1s ease, transform 1s ease;
   border-radius:14px;
-  pointer-events:none;
+}
+.reel-item { 
+  opacity: 0; 
+  pointer-events: none; 
+  transition: opacity .35s ease;
 }
 
-.reel-video.active {
-  opacity:1;
-  transform:scale(1);
-  pointer-events:auto;
+.reel-item.active { 
+  opacity: 1; 
+  pointer-events: auto; 
 }
+
 
 /* DOTS */
 .reel-dots {
@@ -319,104 +319,13 @@ nav a:hover::after {
 .reel-btn.next { right:12px; }
 
 /* ====================================
-   POPUP CINEMATIC
-==================================== */
-.video-popup {
-  position:fixed;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  background:rgba(0,0,0,0.85);
-  backdrop-filter:blur(10px) brightness(.8);
-  -webkit-backdrop-filter:blur(10px) brightness(.8);
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .4s ease, visibility .4s ease;
-  z-index:99999;
-}
-
-.video-popup.show {
-  opacity:1;
-  visibility:visible;
-}
-
-.video-popup-inner {
-  width:min(900px, 92%);
-  transform:scale(.9) translateY(20px);
-  opacity:0;
-  transition:transform .45s cubic-bezier(.16,.84,.44,1),
-             opacity .45s ease;
-}
-
-.video-popup.show .video-popup-inner {
-  opacity:1;
-  transform:scale(1) translateY(0);
-}
-
-.video-popup video {
-  width:100%;
-  border-radius:14px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.7),
-              0 0 60px rgba(245,158,11,0.35);
-}
-
-.video-close {
-  position:absolute;
-  top:-50px;
-  right:0;
-  font-size:46px;
-  color:white;
-  background:none;
-  border:none;
-  cursor:pointer;
-  opacity:.75;
-  transition:.25s ease;
-}
-
-.video-close:hover {
-  opacity:1;
-  transform:scale(1.12);
-}
-
-body.no-scroll { overflow:hidden; }
-
-/* ====================================
-   PAKKER
+   SECTIONS
 ==================================== */
 .section-dark { padding:60px 0; }
 
 .section-title { font-size:32px; margin-bottom:8px; }
 
 .section-sub { color:var(--muted); margin-bottom:22px; }
-
-.packages {
-  display:grid;
-  gap:16px;
-}
-
-@media(min-width:760px){
-  .packages { grid-template-columns:repeat(3, 1fr); }
-}
-
-.pkg {
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:24px;
-  border-radius:14px;
-}
-
-.pkg h3 { margin-bottom:12px; font-size:22px; }
-
-.pkg ul { margin-left:18px; color:var(--muted); line-height:1.6; }
-
-.price {
-  margin-top:16px;
-  font-size:24px;
-  font-weight:700;
-  color:var(--accent);
-}
 
 /* ====================================
    OM MIG
@@ -448,135 +357,7 @@ body.no-scroll { overflow:hidden; }
 }
 
 /* ====================================
-   CV
-==================================== */
-.cv-split {
-  display:flex;
-  gap:40px;
-}
-
-.cv-column {
-  flex:1;
-}
-
-.cv-column h3 {
-  margin-bottom:12px;
-  font-size:22px;
-}
-
-.cv-timeline {
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.cv-item {
-  display:flex;
-  gap:20px;
-  align-items:flex-start;
-}
-
-.cv-year {
-  font-weight:700;
-  color:var(--accent);
-  min-width:70px;
-}
-
-.cv-content p {
-  color:var(--muted);
-  margin-top:4px;
-}
-
-@media(max-width:800px){
-  .cv-split { flex-direction:column; }
-}
-
-/* ====================================
-   KOMPETENCER + SOFTWARE
-==================================== */
-.skills-grid {
-  display:grid;
-  gap:16px;
-}
-
-@media(min-width:760px){
-  .skills-grid { grid-template-columns:repeat(4, 1fr); }
-}
-
-.skill-card {
-  background:var(--card);
-  padding:24px;
-  border-radius:14px;
-  border:1px solid var(--border);
-}
-
-.software-list {
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.software-item {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.stars span {
-  font-size:22px;
-  color:var(--accent);
-}
-
-/* ====================================
-   KONTAKT
-==================================== */
-.kontakt-wrapper {
-  display:flex;
-  gap:40px;
-}
-
-.kontakt-info {
-  flex:1;
-}
-
-.kontakt-form {
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
-.kontakt-form input,
-.kontakt-form textarea {
-  background:#111;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:12px;
-  color:white;
-}
-
-.socials {
-  margin-top:20px;
-  display:flex;
-  gap:16px;
-}
-
-.social { color:var(--accent); text-decoration:none; }
-
-@media(max-width:800px){
-  .kontakt-wrapper { flex-direction:column; }
-}
-
-/* ====================================
-   FOOTER
-==================================== */
-.footer-dark {
-  text-align:center;
-  padding:40px 0;
-  color:var(--muted);
-}
-/* ====================================
-   FILMISK CV LAYOUT
+   CV (FILMISK)
 ==================================== */
 .cv-filmic {
   display:flex;
@@ -639,10 +420,46 @@ body.no-scroll { overflow:hidden; }
     gap:30px;
   }
 }
-/* ========================================
-   KONTAKT — FILMISK STIL
-======================================== */
 
+/* ====================================
+   KOMPETENCER + SOFTWARE
+==================================== */
+.skills-grid {
+  display:grid;
+  gap:16px;
+}
+
+@media(min-width:760px){
+  .skills-grid { grid-template-columns:repeat(4, 1fr); }
+}
+
+.skill-card {
+  background:var(--card);
+  padding:24px;
+  border-radius:14px;
+  border:1px solid var(--border);
+}
+
+.software-list {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.software-item {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stars span {
+  font-size:22px;
+  color:var(--accent);
+}
+
+/* ====================================
+   KONTAKT
+==================================== */
 .kontakt-section {
   margin-top: 60px;
 }
@@ -663,7 +480,6 @@ body.no-scroll { overflow:hidden; }
   backdrop-filter: blur(10px);
 }
 
-/* LEFT SIDE */
 .kontakt-info h3 {
   margin-bottom: 12px;
   font-size: 22px;
@@ -684,7 +500,6 @@ body.no-scroll { overflow:hidden; }
   text-decoration: underline;
 }
 
-/* SOCIALS */
 .socials {
   margin-top: 20px;
   display: flex;
@@ -707,7 +522,6 @@ body.no-scroll { overflow:hidden; }
   color: black;
 }
 
-/* RIGHT SIDE — FORM */
 .kontakt-form {
   display: flex;
   flex-direction: column;
@@ -755,19 +569,18 @@ body.no-scroll { overflow:hidden; }
   background: #ffb23c;
 }
 
-/* MOBILE FIX */
 @media (max-width: 760px) {
   .kontakt-wrapper {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 }
-.filmgrain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: url('Images/grain.png');
-  opacity: 0.07;
-  mix-blend-mode: overlay;
-  z-index: 9999;
+
+/* ====================================
+   FOOTER
+==================================== */
+.footer-dark {
+  text-align:center;
+  padding:40px 0;
+  color:var(--muted);
 }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Thorup Content — Video & Content Creator</title>
   <meta name="description" content="ATM Content — Reels, events og moderne visual storytelling. Skabt af Asbjørn Thorup Møller.">
-  <link rel="stylesheet" href="Mystile.css">
+  <link rel="stylesheet" href="mystile.css">
 </head>
 
 <body class="dark-body">
@@ -24,9 +24,10 @@
   </div>
 
   <nav>
-    <a href="#portfolio">Showreel</a>
-    <a href="#pakker">Pakker</a>
     <a href="#om-mig">Om mig</a>
+    <a href="#portfolio">Showreel</a>
+    <a href="#cv">CV & Uddannelse</a>
+<a href="#kompetencer">Kompentencer</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
 
@@ -83,63 +84,63 @@
   <h2 class="section-title">Showreel</h2>
   <p class="section-sub">Et udvalg af mine projekter.  </p>
 
-  <div class="reel-wrapper">
+<div class="reel-wrapper">
 
-    <button class="reel-btn prev">❮</button>
+  <button class="reel-btn prev">❮</button>
 
-    <div class="reel-track">
+  <div class="reel-track">
 
+    <div class="reel-item">
+     <video playsinline muted loop preload="metadata">
+        <source src="Video/praesentationsvideo.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="reel-item">
+       <video playsinline muted loop preload="metadata">
+        <source src="Video/Havørredjagt.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="reel-item">
+       <video playsinline muted loop preload="metadata">
+        <source src="Video/Drengerøvstur.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="reel-item">
+       <video playsinline muted loop preload="metadata">
+        <source src="Video/Rune lover fangstgaranti - men holder den.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="reel-item">
+   <video playsinline muted loop preload="metadata">
+        <source src="Video/Davinde Sø.mp4" type="video/mp4">
+      </video>
+    </div>
+       
       <div class="reel-item">
-        
-        <video class="reel-video active" autoplay muted loop playsinline data-src="Video/folkemodet.mp4">
-          <source src="Video/praesentationsvideo.mp4" type="video/mp4">
-           
-        </video>
-        
-       </div>
+  
+        <video playsinline muted loop preload="metadata">
+        <source src="Video/berlin.mp4" type="video/mp4">
+      </video>
+    </div>
 
-      </div>
+  </div>
 
-      <div class="reel-item">
-        <video class="reel-video" autoplay muted loop playsinline data-src="Video/praesentationsvideo.mp4">
-          <source src="Video/folkemodet.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="reel-item">
-        <video class="reel-video" autoplay muted loop playsinline data-src="Video/berlin.mp4">
-          <source src="Video/Havørredjagt.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="reel-item">
-        <video class="reel-video" autoplay muted loop playsinline data-src="Video/abning.mp4">
-          <source src="Video/Rune lover fangstgaranti - men holder den.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="reel-item">
-        <video class="reel-video" autoplay muted loop playsinline data-src="Video/UmamiBurger_3.mp4">
-          <source src="Video/Davinde Sø.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="reel-item">
-        <video class="reel-video" autoplay muted loop playsinline data-src="Video/VietnamStreetFood_1.mp4">
-          <source src="Video/berlin.mp4" type="video/mp4">
-        </video>
-      </div>
   <div class="reel-dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
 
-    <button class="reel-btn next">❯</button>
-    </div>
+  <button class="reel-btn next">❯</button>
+
+</div>
 
     
 
@@ -149,13 +150,6 @@
   </div>
 </section>
 
-<!-- POPUP -->
-<div id="videoPopup" class="video-popup">
-  <div class="video-popup-inner">
-    <button class="video-close">&times;</button>
-    <video id="popupVideo" controls></video>
-  </div>
-</div>
 
 
 
@@ -264,39 +258,51 @@
 
 <section id="software" class="container section-dark">
   <h2 class="section-title">Software</h2>
-  <p class="section-sub">De programmer jeg arbejder i </p>
+  <p class="section-sub">De programmer jeg arbejder i: </p>
 
   <div class="software-list">
 
     <div class="software-item">
-      <span class="software-name">Adobe Premiere Pro</span>
+      <span class="software-name"> <h3>Adobe Premiere Pro</h3></span>
       <div class="stars" data-stars="4"></div>
     
       
     </div>
-<p>Jeg har arbejdet i premiere pro siden 2017, hvor jeg først lærte programmet at kende. Siden har jeg udviklet mig meget i mit forståelse af programmet og føler mig erfaren og hjemme i programmet</p>
+<p>Jeg har arbejdet i Premiere Pro siden 2017, hvor jeg først lærte programmet at kende. Siden har jeg udviklet mig meget i mit forståelse af programmet 
+</br>
+</br>
+ og føler mig erfaren og hjemme i programmet</p>
     <div class="software-item">
-      <span class="software-name">DaVinci Resolve</span>
+      <span class="software-name"><h3>DaVinci Resolve</h3></span>
       <div class="stars" data-stars="3"></div>
     </div>
-
+<p>Jeg har arbejdet i programmet siden 2023 og har en solid og grundig forståelse for programmet. Programmet har det fordel kontra adobe premiere pro
+</br>
+</br>
+ at det er bedre til colorgrading, men er mindre intutivt end premiere pro, det har også en gratis version hvor man kan gøre ultrolig</p>
     <div class="software-item">
-      <span class="software-name">Lightroom</span>
+      <span class="software-name"><h3>Lightroom</h3></span>
       <div class="stars" data-stars="3"></div>
     </div>
-
+<p>Jeg har arbejdet i lighroom siden 2017 til større og mindre billedredigeringsprojekter, som bla. har involveretet redigering 
+</br>
+</br>
+ af bryllupsbilleder og barndåbsbilleder</p>
     <div class="software-item">
-      <span class="software-name">Adobe After Effects</span>
+      <span class="software-name"><h3>Adobe After Effects</h3></span>
+      <div class="stars" data-stars="2"></div>
+    </div>
+<p> Jeg har brugt dette program til større animationer som ikke kan løses i Premiere Pro
+</br>
+
+ </p>
+    <div class="software-item">
+      <span class="software-name"><h3>Adobe Photoshop</h3></span>
       <div class="stars" data-stars="2"></div>
     </div>
 
     <div class="software-item">
-      <span class="software-name">Adobe Photoshop</span>
-      <div class="stars" data-stars="2"></div>
-    </div>
-
-    <div class="software-item">
-      <span class="software-name">Adobe InDesign</span>
+      <span class="software-name"><h3>Adobe InDesign</h3></span>
       <div class="stars" data-stars="3"></div>
     </div>
 
@@ -314,7 +320,7 @@
     <div class="kontakt-info">
       <h3>Direkte kontakt</h3>
       <p><strong>Email:</strong> <a href="mailto:asbjoern96@gmail.com">asbjoern96@gmail.com</a></p>
-      <p><strong>Telefon:</strong> <a href="tel:+4522334455">+45 22 33 44 55</a></p>
+      <p><strong>Telefon:</strong> <a href="tel:+4561712435">+4561712435</a></p>
 
       <div class="socials">
         <a href="#" class="social">Instagram</a>
@@ -341,58 +347,72 @@
 
 <footer class="footer-dark">© 2025 ATM Content — Asbjørn Thorup Møller</footer>
 <script>
-/* ===============================
-   SHOWREEL SETUP
-   =============================== */
-
 const items = Array.from(document.querySelectorAll(".reel-item"));
-const videos = items.map(i => i.querySelector("video"));
-const dots = Array.from(document.querySelectorAll(".dot"));
+const dots  = Array.from(document.querySelectorAll(".dot"));
+const prev  = document.querySelector(".reel-btn.prev");
+const next  = document.querySelector(".reel-btn.next");
 
 let current = 0;
+let autoSlide = null;
 
-/* --- VIS VIDEO --- */
-function showReel(i) {
-  videos.forEach((v, idx) => {
-    v.classList.toggle("active", idx === i);
+function showReel(i){
+  current = i;
+
+  items.forEach((item, idx) => {
+    const v = item.querySelector("video");
+    const isActive = idx === current;
+
+    item.classList.toggle("active", isActive);
+
+    if (!v) return;
+
+    // stop alle videoer
+    v.pause();
+    v.currentTime = 0;
+
+    // autoplay den aktive (muted så browseren tillader det)
+    if (isActive) {
+      v.muted = true;
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    }
   });
 
-  dots.forEach((d, idx) => {
-    d.classList.toggle("active", idx === i);
-  });
+  dots.forEach((d, idx) => d.classList.toggle("active", idx === current));
 }
 
-/* Start på index 0 */
-showReel(0);
-
-/* --- AUTOPLAY --- */
-let autoSlide = setInterval(() => {
-  current = (current + 1) % videos.length;
-  showReel(current);
-}, 5000);
-
-/* --- KNAPPER --- */
-document.querySelector(".reel-btn.prev").addEventListener("click", () => {
-  current = (current - 1 + videos.length) % videos.length;
-  showReel(current);
-  restartAuto();
-});
-
-document.querySelector(".reel-btn.next").addEventListener("click", () => {
-  current = (current + 1) % videos.length;
-  showReel(current);
-  restartAuto();
-});
-
-function restartAuto() {
+function restartAuto(){
   clearInterval(autoSlide);
   autoSlide = setInterval(() => {
-    current = (current + 1) % videos.length;
-    showReel(current);
+    showReel((current + 1) % items.length);
   }, 5000);
 }
 
+// klik/tap = play/pause + slå lyd til ved første klik
+items.forEach(item => {
+  const v = item.querySelector("video");
+  if (!v) return;
 
+  item.addEventListener("click", () => {
+    v.muted = false;
+    if (v.paused) v.play();
+    else v.pause();
+  });
+});
 
+prev.addEventListener("click", (e) => {
+  e.stopPropagation();
+  showReel((current - 1 + items.length) % items.length);
+  restartAuto();
+});
+
+next.addEventListener("click", (e) => {
+  e.stopPropagation();
+  showReel((current + 1) % items.length);
+  restartAuto();
+});
+
+showReel(0);
+restartAuto();
 </script>
 
