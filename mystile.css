@@ -139,6 +139,13 @@ nav a::after{
   transition: width .25s ease;
 }
 nav a:hover::after{ width:100%; }
+html{
+  scroll-behavior: smooth;
+}
+section{
+  scroll-margin-top: 90px;
+}
+
 
 /* Burger */
 .burger-btn{
