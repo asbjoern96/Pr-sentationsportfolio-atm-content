@@ -40,24 +40,24 @@
 
 <!-- HERO -->
 <section class="hero-video">
-  <div class="hero-video">
+ 
   <video autoplay muted loop playsinline class="hero-bg-video">
     <source src="Video/berlin.mp4" type="video/mp4">
     
   </video>
 
-  <div class="hero-overlay"></div>
+  
 
   <div class="hero-content container">
     <h1>Visuelle storyteller med flair og fokus på identitet</h1>
     <p>Jeg er en visuel storyteller med fokus på at indfange stemning, autenticitet og et flot æstetisk snit.</p>
     <div class="buttons">
-      <a class="btn-primary" href="#kontakt">Book mig</a>
+      <a class="btn-primary" href="#kontakt">Kontakt mig</a>
       <a class="btn-ghost" href="#portfolio">Se mit arbejde</a>
     </div>
   </div>
   <div class="vignette"></div>
-</div>
+
 </section>
 <!-- OM MIG -->
 <section id="om-mig" class="container section-dark about-section">
@@ -90,6 +90,7 @@
 <div class="reel-wrapper">
 
   <button class="reel-btn prev">❮</button>
+
 
   <div class="reel-track">
 
@@ -136,22 +137,12 @@
     </div>
 
   </div>
-
-  <div class="reel-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-
   <button class="reel-btn next">❯</button>
+
 
 </div>
 
-    
+
 
 
 
@@ -184,7 +175,7 @@
       <div class="cv-filmic-item">
         <div class="cv-dot"></div>
         <div>
-          <span class="cv-year">2025–</span>
+          <span class="cv-year">2025 –</span>
           <h4>Professionsbachelor i Multimediedesign</h4>
           <p>UCL, Odense</p>
         </div>
@@ -260,7 +251,7 @@
 
     <div class="skill-card">
       <h3>Branding</h3>
-      <p>Visuel identitet, tone of voice og markedsforståelse.</p>
+      <p>Visuel identitet, tone of voice og autenticitet</p>
     </div>
   </div>
 </section>
@@ -356,129 +347,162 @@
 
 <footer class="footer-dark">© 2025 Thorup Content — Asbjørn Thorup Møller</footer>
 
-<!-- VIDEO POPUP / MODAL -->
-<div class="video-modal" id="videoModal" aria-hidden="true">
-  <div class="video-modal-backdrop" data-close></div>
+<!-- Video popup / modal -->
+<div id="videoModal" class="video-modal" aria-hidden="true">
+  <div class="video-modal-backdrop" data-close="true"></div>
 
   <div class="video-modal-content" role="dialog" aria-modal="true" aria-label="Video afspiller">
-    <button class="video-modal-close" type="button" aria-label="Luk" data-close>✕</button>
-    <video id="modalVideo" controls playsinline preload="metadata"></video>
+    <button class="video-modal-close" type="button" data-close="true" aria-label="Luk">&times;</button>
+    <video id="modalVideo" controls playsinline></video>
   </div>
 </div>
 
 <script>
+
+  /* Burger menu */
+const burgerBtn = document.querySelector(".burger-btn");
+const nav = document.querySelector("header nav");
+
+if (burgerBtn && nav) {
+  burgerBtn.addEventListener("click", () => nav.classList.toggle("show"));
+  nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => nav.classList.remove("show")));
+}
+
+/* =========================================
+   NETFLIX-AGTIG SHOWREEL RAIL + VIDEO MODAL
+========================================= */
+
+/* --- Elements --- */
+const track = document.querySelector(".reel-track");
 const items = Array.from(document.querySelectorAll(".reel-item"));
-const dots  = Array.from(document.querySelectorAll(".dot"));
 const prev  = document.querySelector(".reel-btn.prev");
 const next  = document.querySelector(".reel-btn.next");
 
-let current = 0;
-let autoSlide = null;
-
-function showReel(i){
-  current = i;
-
-  items.forEach((item, idx) => {
-    const v = item.querySelector("video");
-    const isActive = idx === current;
-
-    item.classList.toggle("active", isActive);
-
-    if (!v) return;
-
-    // stop alle videoer i slideren
-    v.pause();
-    v.currentTime = 0;
-
-    // autoplay den aktive (muted så browseren tillader det)
-    if (isActive) {
-      v.muted = true;
-      const p = v.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
-    }
-  });
-
-  dots.forEach((d, idx) => d.classList.toggle("active", idx === current));
-}
-
-function restartAuto(){
-  clearInterval(autoSlide);
-  autoSlide = setInterval(() => {
-    showReel((current + 1) % items.length);
-  }, 5000);
-}
-
-/* ==========================
-   VIDEO MODAL LOGIK
-========================== */
 const modal = document.getElementById("videoModal");
 const modalVideo = document.getElementById("modalVideo");
 
-function openModalWithSrc(src) {
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-
-  // stop slider-autoplay mens modal er åben
-  clearInterval(autoSlide);
-
-  modalVideo.src = src;
-  modalVideo.currentTime = 0;
-
-  const p = modalVideo.play();
+/* --- Helpers --- */
+function safePlay(videoEl) {
+  if (!videoEl) return;
+  const p = videoEl.play();
   if (p && typeof p.catch === "function") p.catch(() => {});
 }
 
+function getVideoSrc(v) {
+  if (!v) return "";
+  const source = v.querySelector("source");
+  return (source && source.getAttribute("src")) ? source.getAttribute("src") : (v.currentSrc || "");
+}
+
+/* =========================================
+   1) Pile scroller rækken (Netflix rail)
+========================================= */
+function getStep() {
+  const first = items[0];
+  if (!first || !track) return 320;
+  const styles = window.getComputedStyle(track);
+  const gap = parseFloat(styles.gap || "16");
+  return first.getBoundingClientRect().width + gap;
+}
+
+function scrollByCards(direction = 1) {
+  if (!track) return;
+  const step = getStep();
+  track.scrollBy({ left: direction * step * 2, behavior: "smooth" });
+}
+
+if (prev) prev.addEventListener("click", (e) => {
+  e.stopPropagation();
+  scrollByCards(-1);
+});
+
+if (next) next.addEventListener("click", (e) => {
+  e.stopPropagation();
+  scrollByCards(1);
+});
+
+/* =========================================
+   2) Hover preview (desktop)
+========================================= */
+items.forEach((item) => {
+  const v = item.querySelector("video");
+  if (!v) return;
+
+  item.addEventListener("mouseenter", () => {
+    if (modal && modal.classList.contains("open")) return;
+    v.muted = true;
+    v.playsInline = true;
+    safePlay(v);
+  });
+
+  item.addEventListener("mouseleave", () => {
+    v.pause();
+    v.currentTime = 0;
+  });
+});
+
+/* =========================================
+   3) Modal open/close
+========================================= */
+function openModalWithSrc(src) {
+  if (!modal || !modalVideo) return;
+
+  // stop previews i rail
+  items.forEach((item) => {
+    const v = item.querySelector("video");
+    if (!v) return;
+    v.pause();
+    v.currentTime = 0;
+  });
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+
+  modalVideo.src = src;
+  modalVideo.currentTime = 0;
+  safePlay(modalVideo);
+}
+
 function closeModal() {
+  if (!modal || !modalVideo) return;
+
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
 
   modalVideo.pause();
   modalVideo.removeAttribute("src");
   modalVideo.load();
-
-  // start slider igen
-  restartAuto();
 }
 
-// åbn modal ved klik på reel-item (den aktive)
-items.forEach(item => {
+/* Klik på card åbner modal */
+items.forEach((item) => {
   const v = item.querySelector("video");
   if (!v) return;
 
   item.addEventListener("click", () => {
-    // brug <source src="..."> hvis den findes
-    const source = v.querySelector("source");
-    const src = (source && source.getAttribute("src")) ? source.getAttribute("src") : v.currentSrc;
-
+    const src = getVideoSrc(v);
     if (src) openModalWithSrc(src);
   });
 });
 
-// luk ved klik på backdrop eller kryds
-modal.addEventListener("click", (e) => {
+/* Luk ved klik på backdrop eller kryds */
+if (modal) modal.addEventListener("click", (e) => {
   if (e.target && e.target.hasAttribute("data-close")) closeModal();
 });
 
-// luk med ESC
+/* Luk med ESC */
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+  if (e.key === "Escape" && modal && modal.classList.contains("open")) closeModal();
 });
 
-prev.addEventListener("click", (e) => {
-  e.stopPropagation();
-  showReel((current - 1 + items.length) % items.length);
-  restartAuto();
+/* (Valgfrit) Keyboard scroll */
+document.addEventListener("keydown", (e) => {
+  if (modal && modal.classList.contains("open")) return;
+  if (e.key === "ArrowLeft")  scrollByCards(-1);
+  if (e.key === "ArrowRight") scrollByCards(1);
 });
-
-next.addEventListener("click", (e) => {
-  e.stopPropagation();
-  showReel((current + 1) % items.length);
-  restartAuto();
-});
-
-showReel(0);
-restartAuto();
 </script>
 
 
-
+</body>
+</html>
