@@ -194,19 +194,6 @@ nav a:hover::after{ width:100%; }
 }
 
 
-
-.vignette{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:4;
-  background:
-    radial-gradient(circle at center,
-      rgba(0,0,0,0) 60,
-      rgba(0,0,0,0.55) 78%,
-      rgba(0,0,0,0.92) 100%);
-}
-
 .hero-content{
   position:relative;
   z-index:5;
@@ -489,6 +476,24 @@ nav a:hover::after{ width:100%; }
 .skill-card{
   padding:24px;
 }
+/* Skill icons */
+.skill-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.skill-icon .icon{
+  width: 24px;
+  height: 24px;
+  color: var(--accent2);
+}
 
 .software-list{
   display:flex;
@@ -501,10 +506,22 @@ nav a:hover::after{ width:100%; }
   align-items:center;
 }
 
-.stars span{
-  font-size:22px;
-  color: var(--accent2);
+.software-left{
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
+
+.software-logo{
+  width: 60px;
+  height: p60x;
+  object-fit: contain;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 6px;
+}
+
 
 /* ====================================
    KONTAKT (match knap/blå)
